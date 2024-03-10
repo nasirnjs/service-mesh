@@ -17,6 +17,8 @@
 
 `linkerd install --crds | kubectl apply -f -`
 
+`linkerd install | kubectl apply -f -`
+
 ## Step 4: Install your applications both cluster
 
 `kubectl apply -f adding-service.yaml`
