@@ -42,37 +42,37 @@ Access Linkerd UI dashboard
 
 **Exam!!!!**
 
-**Q1.** `viz` is an example of what type of Linkerd component?.\
+**Q1.** `viz` is an example of what type of Linkerd component?.
 - A data plane proxy
 - A core control plane component
 - A data plane plugin
 - **An extension**
 
-**Q2.** What is the first step of deploying a service mesh to touch the cluster?.\
+**Q2.** What is the first step of deploying a service mesh to touch the cluster?.
 - **Deploying the control plane**
 - Deploying the data plane
 - Deploying the CLI
 - Deploying an extension
 
-**Q3.** Which service mesh component runs on your local machine, not on the cluster?.\
+**Q3.** Which service mesh component runs on your local machine, not on the cluster?.
 - The control plane
 - The data plane
 - **The CLI**
 - The application
 
-**Q4.** Which of the following is enabled in Linkerd's HA mode?.\
+**Q4.** Which of the following is enabled in Linkerd's HA mode?.
 - **Multiple replicas of critical control plane components**
 - Multiple TLS keys for improved security
 - Horizontal pod autoscaling of proxies
 - All of the above
 
-**Q5.** Where are Linkerd's control plane extensions installed?.\
+**Q5.** Where are Linkerd's control plane extensions installed?.
 - Alongside the control plane, in the same namespace
 - **Alongside the control plane, in a different namespace**
 - Alongside the data plane
 - Alongside the CLI, on your local machine
 
-**Q6.** What would we do differently from demo usage if we were deploying Linkerd in a production cluster?.\
+**Q6.** What would we do differently from demo usage if we were deploying Linkerd in a production cluster?.
 - We would use a tool like Helm instead of the CLI.
 - We would enable high availability mode.
 - We would generate our own key material.
@@ -108,19 +108,19 @@ At this point, booksapp will be up and running, and you'll be able to see that e
 `kubectl get pods -n booksapp`
 
 **Questions!!!!**
-**Q1.** What happens when a workload is meshed?\
+**Q1.** What happens when a workload is meshed?
 - Service mesh sidecar containers are injected into its application code.
 - **Service mesh sidecar containers are added to its pods.**
 - Service mesh sidecar containers are injected into namespace annotations.
 - Service mesh sidecar containers are added to the proxy injector.
 
-**Q2.** After the injection annotation is applied to a namespace, what must be done to mesh all workloads in that namespace?.\
+**Q2.** After the injection annotation is applied to a namespace, what must be done to mesh all workloads in that namespace?.
 - **Roll any existing workloads.**
 - Roll all new workloads.
 - Restart the proxy injector.
 - All of the above.
 
-**Q3.** Why does a service mesh use init containers?.\
+**Q3.** Why does a service mesh use init containers?.
 - To initialize the sidecar proxies.
 - To initialize the application.
 - To set up networking so that TCP traffic to and from a pod is routed to the application.
@@ -145,31 +145,31 @@ At this point, booksapp will be up and running, and you'll be able to see that e
 
 **Questions!!!!**
 
-**Q1.** What are some downsides of Linkerd Viz?\
+**Q1.** What are some downsides of Linkerd Viz?
 - It requires additional components running in your environment.
 - It has no built-in access control or user login.
 - Prometheus may require significant resources.
 - **All of the above**
 
-**Q2.** What metrics functionality does the Linkerd proxy provide?\
+**Q2.** What metrics functionality does the Linkerd proxy provide?
 - **Instrumentation.**
 - Aggregation.
 - Reporting.
 - All of the above.
 
-**Q3.** What are the three golden metrics provided by a service mesh?\
+**Q3.** What are the three golden metrics provided by a service mesh?
 - Latency, performance, and reporting
 - **Latency, success rate, and traffic volume**
 - Instrumentation, aggregation, and reporting
 - Instrumentation, aggregation, and traffic volume
 
-**Q4.** What does the p95 latency represent?\
+**Q4.** What does the p95 latency represent?
 - The latency of 95 percent of requests.
 - **The latency at which 95 percent of requests were at or under.**
 - The latency at which 95 percent of requests were over.
 - The latency at which 5 percent of requests were at or under.
 
-**Q5.** What is unique about latency as a metric?\
+**Q5.** What is unique about latency as a metric?
 - **It doesn't have a fixed set of possible values.**
 - It is either true or false.
 - It represents a count rather than a value.
@@ -179,7 +179,7 @@ At this point, booksapp will be up and running, and you'll be able to see that e
 
 **mTLS in Linkerd**
 Linkerd automatically secures communications between workloads using mutual TLS (mTLS).\
-Linkerd automatically protects all communications in the cluster using mTLS. We'll take a quick look at how to verify working mTLS in the cluster.\
+Linkerd automatically protects all communications in the cluster using mTLS. We'll take a quick look at how to verify working mTLS in the cluster.
 
 **Q1.**Which property of a TLS connection means that it is encrypted?
 - Authenticity
