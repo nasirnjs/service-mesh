@@ -1,11 +1,9 @@
 
 ##  Steps 1: Start cluster and get right contexts
 
-For minikube cluster only `linkerd  minikube --profile west start`
-
 `linkerd  kubectl config get-contexts`
 
-`linkerd  kubectl config use-context west`
+`linkerd  kubectl config use-context east`
 
 ## Steps 2: Install linkerd CLI both cluster
 If this is your first time running Linkerd, you will need to download the linkerd CLI onto your local machine. The CLI will allow you to interact with your Linkerd deployment
@@ -27,8 +25,6 @@ If this is your first time running Linkerd, you will need to download the linker
 `linkerd install --crds | kubectl apply -f -`
 
 `linkerd install | kubectl apply -f -`
-
-*For minikube cluster only don't need cloud or kubeadm cluster* `linkerd install --set proxyInit.runAsRoot=true | kubectl apply -f -` [References](https://forum.linuxfoundation.org/discussion/861445/linkerd-where-to-pass-the-flag-set-proxyinit-runasroot-true)
 
 ### Step 2.4: Install your applications both cluster
 
