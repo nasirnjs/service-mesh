@@ -30,7 +30,7 @@ If this is your first time running Linkerd, you will need to download the linker
 
 `kubectl apply -f adding-service.yaml`
 
-`kubectl get deployments.apps nginx-deployment -o yaml | linkerd inject - | kubectl apply -f -`
+`kubectl get deployments.apps webapp-deployment -o yaml | linkerd inject - | kubectl apply -f -`
 
 ### Step 2.5: Explore Linkerd!
 
