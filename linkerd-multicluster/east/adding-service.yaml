@@ -23,7 +23,7 @@ kind: Service
 metadata:
   name: webapp-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 80
     targetPort: 80
