@@ -1,8 +1,10 @@
 
 ## Prerequisites
 Two k8s Cluster
+
 Rename Cluster context as your wish hre East & West
-Install step [References](https://smallstep.com/docs/step-cli/installation/#debian-ubuntu)
+
+Install step for mtls [References](https://smallstep.com/docs/step-cli/installation/#debian-ubuntu)
 
 
 ## Steps1: Install Linkerd CLI [References](https://linkerd.io/2.15/getting-started/)
@@ -110,7 +112,8 @@ linkerd --context=east multicluster link --cluster-name east |
 
 `linkerd --context=west multicluster check`
 
-`linkerd --context=east multicluster link --cluster-name east | kubectl --context=west apply -f -`
+Additionally, the east gateway should now show up in the list.\
+`linkerd --context=west multicluster gateways`
 
 
 ## Installing the test services both clusters
@@ -122,14 +125,14 @@ linkerd --context=east multicluster link --cluster-name east |
 ### Exporting the services Est to West Cluster
 Export the `webapp-service` service in the east cluster, You can do this by adding the mirror.linkerd.io/exported label.
 
-`kubectl --context=east label svc -n test webapp-service mirror.linkerd.io/exported=true`
+`kubectl --context=east label svc webapp-service mirror.linkerd.io/exported=true`
 
 Check out the service that was just created by the service mirror controller!
 
-`kubectl --context=west -n test get svc webapp-service-east`
+`kubectl --context=west get svc webapp-service-east`
 
 
-`kubectl --context=west -n test get endpoints webapp-service-east -o 'custom-columns=ENDPOINT_IP:.subsets[*].addresses[*].ip'`
+`kubectl --context=west get endpoints webapp-service-east -o 'custom-columns=ENDPOINT_IP:.subsets[*].addresses[*].ip'`
 
 `kubectl --context=east -n linkerd-multicluster get svc linkerd-gateway -o "custom-columns=GATEWAY_IP:.status.loadBalancer.ingress[*].ip"`
 
@@ -225,8 +228,8 @@ kubectl --context=east -n linkerd-multicluster get svc linkerd-gateway \
   
   
   
-kubectl --context=west -n test exec -c nginx -it \
-  $(kubectl --context=west -n test get po -l app=frontend \
+kubectl --context=west exec -c nginx -it \
+  $(kubectl --context=west get po -l app=frontend \
     --no-headers -o custom-columns=:.metadata.name) \
   -- /bin/sh -c "apk add curl && curl http://podinfo-east:9898"
 

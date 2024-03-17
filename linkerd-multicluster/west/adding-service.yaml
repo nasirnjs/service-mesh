@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         app: webapp
+      annotations:
+        linkerd.io/inject: enabled   # Add this annotation to enable Linkerd proxy injection
     spec:
       containers:
       - name: webapp-container
@@ -21,7 +23,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp-service
+  name: webapp-service-west
 spec:
   type: ClusterIP
   ports:

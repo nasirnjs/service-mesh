@@ -2,11 +2,11 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-services
-  namespace: test
   annotations:
-    nginx.ingress.kubernetes.io/use-regex: 'true'
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30s"  # Increase connect timeout
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "30s"     # Increase send timeout
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "30s"     # Increase read timeout
 spec:
   ingressClassName: nginx
   rules:
@@ -19,4 +19,4 @@ spec:
           service:
             name: webapp-service-east
             port:
-              number: 80
+              number: 4143
