@@ -4,9 +4,6 @@ metadata:
   name: ingress-services
   annotations:
     nginx.ingress.kubernetes.io/service-upstream: "true"
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30s"  # Increase connect timeout
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "30s"     # Increase send timeout
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "30s"     # Increase read timeout
 spec:
   ingressClassName: nginx
   rules:
@@ -19,4 +16,4 @@ spec:
           service:
             name: webapp-service-east
             port:
-              number: 4143
+              number: 80
