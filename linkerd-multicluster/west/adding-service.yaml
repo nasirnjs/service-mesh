@@ -11,8 +11,6 @@ spec:
     metadata:
       labels:
         app: webapp
-      annotations:
-        linkerd.io/inject: enabled   # Add this annotation to enable Linkerd proxy injection
     spec:
       containers:
       - name: webapp-container

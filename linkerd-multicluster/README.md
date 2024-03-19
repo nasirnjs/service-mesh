@@ -116,50 +116,72 @@ Additionally, the east gateway should now show up in the list.\
 `linkerd --context=west multicluster gateways`
 
 
-## Installing the test services both clusters
+## Installing the Application & services both clusters
 
-### Create Namespace
+### First Create same Namespace in Both Cluster
 
-### Apply Services
+### Apply Application & Services
 
 ### Exporting the services Est to West Cluster
 Export the `webapp-service` service in the east cluster, You can do this by adding the mirror.linkerd.io/exported label.
 
-`kubectl --context=east label svc webapp-service mirror.linkerd.io/exported=true`
+`kubectl --context=east label -n service-mesh-ns svc webapp-service mirror.linkerd.io/exported=true`
 
 Check out the service that was just created by the service mirror controller!
 
-`kubectl --context=west get svc webapp-service-east`
+`kubectl --context=west -n service-mesh-ns get svc webapp-service-east`
 
 
-`kubectl --context=west get endpoints webapp-service-east -o 'custom-columns=ENDPOINT_IP:.subsets[*].addresses[*].ip'`
+
+`kubectl --context=west -n service-mesh-ns get endpoints webapp-service-east -o 'custom-columns=ENDPOINT_IP:.subsets[*].addresses[*].ip'`
+
+
 
 `kubectl --context=east -n linkerd-multicluster get svc linkerd-gateway -o "custom-columns=GATEWAY_IP:.status.loadBalancer.ingress[*].ip"`
 
+**Before install Ingress in west cluster create a namespace Imperative way**
+`kubectl create namespace service-mesh-ns`
+
+Switch to `service-mesh-ns` namespace
+`kubens service-mesh-ns`
+
+Now Install Ingress via helm.
+```
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+helm install any-name ingress-nginx/ingress-nginx
+```
+
+Now Apply `namespace.yaml` that enable `linkerd.io/inject`.\
+`k apply -f namespace.yaml`
+
+Apply your other applications
+
+Update A Record your Domain
+
+Install Cert Managet
+
+Install TLS Issuer
+
+Install TLS Certificate.
 
 
+**Check East cluster pod container logs**
 
-
-
-
-
+`kubectl logs webapp-deployment-7bc5bc6468-nmlfw -c webapp-container -f`
 
 
 
 [Reference](https://linkerd.io/2.15/tasks/multicluster/)
 
 
-[References2](https://smallstep.com/docs/step-cli/installation/#macos)
+[Reference2](https://smallstep.com/docs/step-cli/installation/#macos)
 
 
+[Reference3](https://buoyant.io/blog/multi-cluster-multi-region-setup-using-linkerd-service-mesh)
 
   
   
-  
-kubectl --context=west exec -c nginx -it \
-  $(kubectl --context=west get po -l app=frontend \
-    --no-headers -o custom-columns=:.metadata.name) \
-  -- /bin/sh -c "apk add curl && curl http://podinfo-east:9898"
 
 
 
