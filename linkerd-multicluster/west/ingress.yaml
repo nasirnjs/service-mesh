@@ -11,10 +11,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - service.cloudaes.com
+    - cloudopsschool.com
     secretName: letsencrypt-prod
   rules:
-  - host: service.cloudaes.com
+  - host: cloudopsschool.com
     http:
       paths:
       - path: /

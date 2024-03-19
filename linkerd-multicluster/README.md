@@ -123,20 +123,16 @@ Additionally, the east gateway should now show up in the list.\
 ### Apply Application & Services
 
 ### Exporting the services Est to West Cluster
-Export the `webapp-service` service in the east cluster, You can do this by adding the mirror.linkerd.io/exported label.
+Export the `webapp-service` service in the east cluster to west cluster, You can do this by adding the mirror.linkerd.io/exported label.
 
 `kubectl --context=east label -n service-mesh-ns svc webapp-service mirror.linkerd.io/exported=true`
 
-Check out the service that was just created by the service mirror controller!
-
+Check out the service that was just created by the service mirror controller!.\
 `kubectl --context=west -n service-mesh-ns get svc webapp-service-east`
 
 
-
-`kubectl --context=west -n service-mesh-ns get endpoints webapp-service-east -o 'custom-columns=ENDPOINT_IP:.subsets[*].addresses[*].ip'`
-
-
-
+Check the endpoints in west and verify that they match the gateway’s public IP address in east.\
+`kubectl --context=west -n service-mesh-ns get endpoints webapp-service-east -o 'custom-columns=ENDPOINT_IP:.subsets[*].addresses[*].ip'`\
 `kubectl --context=east -n linkerd-multicluster get svc linkerd-gateway -o "custom-columns=GATEWAY_IP:.status.loadBalancer.ingress[*].ip"`
 
 **Before install Ingress in west cluster create a namespace Imperative way**
